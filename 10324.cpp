@@ -3,7 +3,7 @@ using namespace std;
 
 void ordenar(int &i, int &j){
     int aux;
-    if(j>i){
+    if(i>j){
         aux = i;
         i = j;
         j = aux;
@@ -11,7 +11,7 @@ void ordenar(int &i, int &j){
 }
 
 int main(void){
-    char str[1000000], carac;
+    char str[1000000];
     int n,i,j,k,caso=1;
     bool igual;
 
@@ -22,9 +22,8 @@ int main(void){
             igual = true;
             cin >> i >> j;
             ordenar(i,j);
-            carac = str[i];
             for(k=i; k<=j; k++){
-                if(str[k]!= carac){
+                if(str[k]!= str[i]){
                     igual = false;
                     break;
                 }
