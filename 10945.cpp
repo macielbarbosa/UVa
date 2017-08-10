@@ -2,38 +2,37 @@
 #include <string>
 using namespace std;
 
-inline bool caracValido(char carac){return carac!='.' || carac!=',' || carac!='?' || carac!='!';}
+bool caracValido(char carac){ return carac!='.' && carac!=',' && carac!='?' && carac!='!' && carac!=' ';}
 
 bool palindromo(string str){
     int tam = str.length();
-    cout << tam << endl;
-    for(int i=0, j=tam; i<=tam; i++){
-        if(!caracValido(tolower(str[i])){
-            cout << "*";
+
+    for(int i=0, j=tam-1; i<tam; i++){
+        if(!caracValido(str[i]))
             continue;
-        }
-        for( ; j>=0 || str[i]==str[j]; j--){
-            if(!caracValido(tolower(str[j])){
-                cout << "*";
+        while(j>=0){
+            if(!caracValido(str[j])){
+                j--;
                 continue;
             }
-            if(tolower(str[i])!= tolower(str[j]))
+            if(tolower(str[i])!=tolower(str[j]))
                 return false;
+            j--;
+            break;
         }
     }
     return true;
 }
 
 int main(void){
-    string palavra;
-    cin.ignore();
-    getline(cin,palavra);
-    while(palavra != "DONE"){
-        if(palindromo(palavra))
+    string str;
+
+    getline(cin,str);
+    while(str!="DONE"){
+        if(palindromo(str))
             cout << "You won't be eaten!" << endl;
         else
             cout << "Uh oh.." << endl;
-        cin.ignore();
-        getline(cin,palavra);
+        getline(cin,str);
     }
 }
