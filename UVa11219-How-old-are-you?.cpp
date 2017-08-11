@@ -18,8 +18,6 @@ void analiseDatas(const Data &atual, const Data &nasc){
     int idade;
     if(atual.ano == nasc.ano && atual.mes == nasc.mes && atual.dia == nasc.dia)
         cout << "0";
-    else if(atual.ano-nasc.ano>130)
-        cout << "Check birth date";
     else if(atual.ano<nasc.ano)
         cout << "Invalid birth date";
     else if(atual.ano==nasc.ano && atual.mes<nasc.mes)
@@ -30,7 +28,10 @@ void analiseDatas(const Data &atual, const Data &nasc){
         idade = atual.ano-nasc.ano;
         if(atual.mes<nasc.mes) idade--;
         else if(atual.mes==nasc.mes && atual.dia<nasc.dia) idade--;
-        cout << idade;
+        if(idade>130)
+            cout << "Check birth date";
+        else
+            cout << idade;
     }
 }
 
@@ -41,9 +42,8 @@ int main(void){
     cin >> n;
     cin.ignore();
     while(n--){
-        cout << endl;
-        getline(cin,str1);
-        getline(cin,str2);
+        cin >> str1;
+        cin >> str2;
         cout << "Case #" << caso++ << ": ";
         setData(atual,str1);
         setData(nasc,str2);
