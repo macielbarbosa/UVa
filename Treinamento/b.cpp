@@ -1,10 +1,10 @@
 #include <iostream>
-#include <list>
+#include <vector>
 
 using namespace std;
 
-bool contains(int n, list<int> l){
-    list<int>::iterator it;
+bool contains(int n, vector<int> l){
+    vector<int>::iterator it;
     bool result=false;
     for(it = l.begin(); it != l.end(); it++){
         if(*it == n)
@@ -13,43 +13,30 @@ bool contains(int n, list<int> l){
     return result;
 }
 
-void outlist(list<int> l){
-    l.sort();
-    list<int>::iterator it;
-    for(it = l.begin(); it != l.end(); it++){
-        if(*it!=-1)
-            cout << " " << *it;
-    }
-}
-
 int main(){
-    list<int> l1,l2,l3,f1,f2,f3;
-    list<int>::iterator it, it2;
-    int T, S, n , c1,c2,c3, cont=1;
-    cin >> T;
-    while(T--){
+    vector<vector> m;
+    vector<int> aux;
+    vector<int>::iterator iti;
+    vector<vector>::iterator itv;
+    int S, n , c1,c2,c3, cont;
+    while(1){
+        cin >> n;
+        if(n==0) break;
+        m.clear();
         c1=0;
         c2=0;
         c3=0;
-        cin >> S;
-        while(S--){
-            cin >> n;
-            l1.push_back(n);
+        cont=0;
+        while(n--){
+            S=5;
+            aux.clear();
+            while(S--){
+                cin >> n;
+                aux.push_back(n);
+            }
+            m.push_back(aux);
         }
-        cin >> S;
-        while(S--){
-            cin >> n;
-            l2.push_back(n);
-        }
-        cin >> S;
-        while(S--){
-            cin >> n;
-            l3.push_back(n);
-        }
-        f1=l1;
-        f2=l2;
-        f3=l3;
-        for(it = l1.begin(), it2 = f1.begin(); it != l1.end(); it2++, it++){
+        for(itv = m.begin(), iti = *itv.begin(); itv != l1.end(); itv++){
             if(!contains(*it,l2) && !contains(*it,l3))
                 c1++;
             else{
@@ -91,3 +78,4 @@ int main(){
         l3.clear();
     }
 }
+
